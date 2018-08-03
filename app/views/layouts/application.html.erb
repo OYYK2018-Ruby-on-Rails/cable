@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cable</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <% if user_signed_in? %>
+      <!-- current_user will return true if a user is logged in -->
+      <%= "Logged in as ##{current_user.id} - #{current_user.email}" %> |
+      <%= link_to 'Log Out', logout_path, method: :delete %>
+    <% else %>
+      <!-- not logged in -->
+      <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %>
+    <% end %>
+
+    <%= notice if notice %>
+    <%= alert if alert %>
+    <%= yield %>
+  </body>
+</html>
